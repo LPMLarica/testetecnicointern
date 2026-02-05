@@ -1,90 +1,110 @@
-# HtmlAnalyzer - Analisador de HTML
+# HtmlAnalyzer
 
-## Descrição
-Este programa Java analisa uma URL fornecida e extrai o texto contido no nível 3 de profundidade da estrutura HTML.
+> A Java-based HTML structure analyzer that extracts text at specific depth levels
 
-## Compilação
+##  Overview
 
-Para compilar o programa, execute o seguinte comando no diretório que contém o arquivo fonte:
+This Java program analyzes a provided URL and extracts text content located at depth level 3 within the HTML structure.
+
+## Getting Started
+
+### Compilation
+
+To compile the program, run the following command in the directory containing the source file:
 
 ```bash
 javac HtmlAnalyzer.java
 ```
 
-## Execução
+### Execution
 
-Para executar o programa, use o seguinte comando passando a URL como argumento:
+To run the program, use the following command with the URL as an argument:
 
 ```bash
-java HtmlAnalyzer inserir-url-aqui
+java HtmlAnalyzer <insert-url-here>
 ```
 
-### Exemplo:
+#### Example
+
 ```bash
 java HtmlAnalyzer http://hiring.axreng.com/internship/example1.html
 ```
 
-## Saídas Possíveis
+## Output
 
-O programa retorna uma das seguintes saídas:
+The program returns one of the following outputs:
 
-1. **Texto encontrado**: O texto no nível 3 de profundidade do HTML
-2. **"malformed HTML"**: Caso a estrutura HTML seja inválida ou mal-formada
-3. **"URL connection error"**: Caso não seja possível obter o conteúdo HTML da URL
+| Output | Description |
+|--------|-------------|
+| **Text found** | The text at depth level 3 of the HTML structure |
+| `malformed HTML` | Invalid or malformed HTML structure detected |
+| `URL connection error` | Unable to retrieve HTML content from the URL |
 
+## Validation Rules
 
-### Validações Implementadas
-- Estrutura HTML dividida em linhas
-- Cada linha contém apenas um elemento (tag de abertura, fechamento ou texto)
-- Validação de tags pareadas (abertura e fechamento)
-- Validação de que tags não possuem atributos
-- Detecção de HTML mal-formado
-- Ignoração de espaços em branco e linhas vazias
+The analyzer implements the following validation checks:
 
-## Exemplos de Uso
+- HTML structure divided into individual lines
+- Each line contains only one element (opening tag, closing tag, or text)
+- Paired tag validation (matching opening and closing tags)
+- Tags must not contain attributes
+- Malformed HTML detection
+- Whitespace and empty lines are ignored
 
-### HTML Válido:
+## Usage Examples
+
+### Valid HTML
+
 ```html
 <html>
     <head>
-        <title>Este é o título.</title>
+        <title>This is the title.</title>
     </head>
     <body>
-        Este é o corpo.
+        This is the body.
     </body>
 </html>
 ```
-**Saída**: `Este é o título.`
 
-### HTML Mal-formado:
+**Output:** `This is the title.`
+
+### Malformed HTML
+
 ```html
 <html>
     <head>
-        <title>Título sem fechamento
+        <title>Title without closing tag
     </head>
 </html>
 ```
-**Saída**: `malformed HTML`
 
-### URL Inválida:
+**Output:** `malformed HTML`
+
+### Invalid URL
+
 ```bash
-java HtmlAnalyzer http://url-inexistente.com
+java HtmlAnalyzer http://non-existent-url.com
 ```
-**Saída**: `URL connection error`
 
-## Estrutura do Código
+**Output:** `URL connection error`
 
-- `main()`: Ponto de entrada, valida argumentos e coordena a execução
-- `fetchHtmlContent()`: Obtém o conteúdo HTML da URL
-- `analyzeHtml()`: Analisa o HTML e retorna o resultado
-- `parseHtmlToLines()`: Divide o HTML em linhas
-- `isWellFormed()`: Valida se o HTML está bem-formado
-- `findDeepestText()`: Encontra o texto no nível 3 de profundidade
+## Code Structure
 
-## Observações
+| Method | Description |
+|--------|-------------|
+| `main()` | Entry point; validates arguments and coordinates execution |
+| `fetchHtmlContent()` | Retrieves HTML content from the URL |
+| `analyzeHtml()` | Analyzes HTML and returns the result |
+| `parseHtmlToLines()` | Splits HTML into individual lines |
+| `isWellFormed()` | Validates whether the HTML is well-formed |
+| `findDeepestText()` | Locates text at depth level 3 |
 
-- O programa considera apenas elementos HTML com tags de abertura e fechamento pareadas
-- Tags como `<br/>` são ignoradas
-- Espaços em branco iniciais são ignorados
-- Linhas em branco são ignoradas
-- Tags com atributos são consideradas inválidas
+## ⚠️ Important Notes
+
+- The program only considers HTML elements with paired opening and closing tags
+- Self-closing tags like `<br/>` are ignored
+- Leading whitespace is ignored
+- Empty lines are ignored
+- Tags with attributes are considered invalid
+
+---
